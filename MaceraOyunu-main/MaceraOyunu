@@ -1,0 +1,654 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Game game = new Game();
+        game.play();
+    }
+}
+
+
+public class Game {
+    Scanner scan = new Scanner(System.in);
+
+    Player player;
+    int playerID;
+    String locationID;
+
+    public void play() {
+
+
+        // Oyuncu Karşılanıyor
+        System.out.println("MACERA OYUNUNA HOŞGELDİNİZ");
+        System.out.print("Lütfen Bir İsim Girininz    :");
+        String playername = scan.nextLine();
+
+        // Karakter Seçimi Yaptırıyoruz
+        selectChar();
+
+
+        // Bölge Seçimi Döngüsü
+        Location location = null;
+        while (true) {
+            System.out.print("Bölge Seçmek İçin 5'e basınız   :");
+            int isSelecet = scan.nextInt();
+            if(isSelecet==5)
+            {
+                location = selectLoc();
+            }
+            if(location.onLocation()==false)
+            {
+                System.out.println("-------- GAME OVER ! --------");
+                break;
+
+            }
+        }
+    }
+
+    private Location selectLoc() {
+        Location location = null;
+        System.out.println("############  BÖLGELER  ##############");
+        System.out.println("1. Güvenli Ev");
+        System.out.println("2. Mağaza");
+        System.out.println("3. Mağara");
+        System.out.print("Gitmek İstediğiniz Bölgeyi Seçin  :");
+        int secim = scan.nextInt();
+        switch (secim) {
+            case 1:
+                location = new SafeHouse(player, "Güvenli");
+                break;
+
+            case 2:
+                location = new ToolStore(player, "Mağaz");
+                break;
+
+            case 3:
+                location = new Cave(player);
+                break;
+    
+            default:
+                location = new SafeHouse(player, "Güvenli");
+                break;
+
+
+        }
+        return location;
+    }
+
+
+    private void selectChar() {
+        showChar();
+        System.out.print("Karakter Seçiniz:     ");
+        playerID = scan.nextInt();
+        if (playerID == 1) {
+            player = new Player("Samuray", 5, 21, 15);
+        } else if (playerID == 2) {
+            player = new Player("Okçu", 7, 18, 20);
+        } else if (playerID == 3) {
+            player = new Player("Şovalye", 8, 24, 5);
+        }
+        System.out.println("Karakter:" + player.getName());
+    }
+
+
+    private void showChar() {
+        System.out.println("----- KARAKTERLER -----");
+        System.out.println("1-Samuray");
+        System.out.println();
+        System.out.println("Hasar      :5");
+        System.out.println("Sağlık     :21");
+        System.out.println("Para       :15");
+        System.out.println();
+        System.out.println("--------------------");
+        System.out.println("2-Okçu");
+        System.out.println();
+        System.out.println("Hasar      :7");
+        System.out.println("Sağlık     :18");
+        System.out.println("Para       :20");
+        System.out.println();
+        System.out.println("--------------------");
+        System.out.println("3-Şövalye");
+        System.out.println();
+        System.out.println("Hasar      :8");
+        System.out.println("Sağlık     :25");
+        System.out.println("Para       :5");
+        System.out.println();
+    }
+
+}
+import java.util.Scanner;
+
+public class Player {
+
+    Scanner scan= new Scanner(System.in);
+
+    public Inventory inventory;
+    private String name;
+    private int health;
+    private int damage;
+    private int money;
+    private String charID;
+
+    public Player ( String name,int damage, int health, int money)
+    {
+        this.name=name;
+        this.health=health;
+        this.damage=damage;
+        this.money=money;
+        inventory=new Inventory(0,0);
+    }
+
+
+    public int getTotalDamage()
+    {
+        return this.damage+inventory.getWeaponDamage();
+    }
+    public int getTotalHealth()
+    {
+        return this.health+inventory.getArmorDefence();
+    }
+    public String getCharID() {
+        return charID;
+    }
+
+    public void setCharID(String charID) {
+        this.charID = charID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+}
+public class Inventory {
+
+     private boolean water;
+     private boolean food;
+     private boolean firewood;
+     private String weaponName;
+     private int weaponDamage;
+     private String armorName;
+     private int armorDefence;
+
+     public Inventory(int weaponDamage, int armorDefence) {
+          this.armorDefence = armorDefence;
+          this.weaponDamage =weaponDamage;
+     }
+
+     public boolean isWater() {
+          return water;
+     }
+
+     public void setWater(boolean water) {
+          this.water = water;
+     }
+
+     public boolean isFood() {
+          return food;
+     }
+
+     public void setFood(boolean food) {
+          this.food = food;
+     }
+
+     public boolean isFirewood() {
+          return firewood;
+     }
+
+     public void setFirewood(boolean firewood) {
+          this.firewood = firewood;
+     }
+
+     public String getWeaponName() {
+          return weaponName;
+     }
+
+     public void setWeaponName(String weaponName) {
+          this.weaponName = weaponName;
+     }
+
+     public int getWeaponDamage() {
+          return weaponDamage;
+     }
+
+     public void setWeaponDamage(int weaponDamage) {
+          this.weaponDamage = weaponDamage;
+     }
+
+     public String getArmorName() {
+          return armorName;
+     }
+
+     public void setArmorName(String armorName) {
+          this.armorName = armorName;
+     }
+
+     public int getArmorDefence() {
+          return armorDefence;
+     }
+
+     public void setArmorDefence(int armorDefence) {
+          this.armorDefence = armorDefence;
+     }
+}
+public abstract class BattleLoc extends Location {
+
+    private Obstacle obstacle;
+    private String award;
+    private int obsNum;
+
+
+
+    public BattleLoc(Player player, String name, Obstacle obstacle, String award, int obsNum)
+    {
+        super(player,name);
+        this.obstacle=obstacle;
+        this.award=award;
+        this.obsNum=3;
+    }
+
+    @Override
+    public boolean onLocation() {
+        int obsNum = 3;
+        System.out.println("Şu an buradasınız " + this.getName());
+        System.out.println("Dikkatli Ol Burada " + obsNum + " tane " + this.getObstacle().getName() + " Yasiyor");
+        System.out.println("Savaşmak İstiyor Musunuz ? \n 1     :Evet \n 2      :Hayır");
+        int savasSecimi = scan.nextInt();
+
+        //Savaş
+        if (savasSecimi == 1) {
+            combat(3);
+        }
+        return true;
+    }
+
+    public void combat(int obsNum)
+    {
+       for(int i=1;i<=obsNum;i++)
+       {
+           playerStats();
+           obsStats();
+           while(this.getPlayer().getHealth() > 0 || this.getObstacle().getHealth() > 0)
+           {
+               System.out.println("Saldır :1 \n Ka. :2");
+               int secim=scan.nextInt();
+               if(secim==1)
+               {
+                   System.out.println("Siz Vurdunuz");
+                   getObstacle().setHealth(this.getObstacle().getHealth()-this.player.getTotalDamage());
+                   afterHit();
+                   if(this.getObstacle().getHealth() > 0)
+                   {
+                       System.out.println();
+                       System.out.println("Canavar Size Vurdu");
+                       int obstacleDamage = this.getObstacle().getDamage() - this.getPlayer().inventory.getArmorDefence();
+                       if(obstacleDamage<0)
+                           obstacleDamage=0;
+
+                       this.getPlayer().setHealth(this.getPlayer().getHealth() - obstacleDamage);
+                        afterHit();;
+                   }
+
+               }
+           }
+
+       }
+    }
+    public void afterHit()
+    {
+        System.out.println("SENİN CANIN     :" +getPlayer().getHealth());
+        System.out.println("CANAVARIN CAN     :"+getObstacle().getHealth());
+    }
+    public void playerStats()
+    {
+        System.out.println("CAN     :" +getPlayer().getHealth());
+        System.out.println("CAN     :" +getPlayer().getHealth());
+
+
+    }
+
+    public void obsStats()
+    {
+        System.out.println("--- "+ getObstacle().getName()+" ---");
+        System.out.println("CAN     :"+getObstacle().getHealth());
+        System.out.println("HASAR   :"+ getObstacle().getDamage());
+
+    }
+    public Obstacle getObstacle() {
+        return obstacle;
+    }
+
+    public void setObstacle(Obstacle obstacle) {
+        this.obstacle = obstacle;
+    }
+
+    public String getAward() {
+        return award;
+    }
+
+    public void setAward(String award) {
+        this.award = award;
+    }
+
+}
+public class River extends BattleLoc{
+
+    public River(Player player, String name, Obstacle obstacle, String award, int obsNum) {
+        super(player, "Nehir", new Bear(), "Su", 3);
+
+    }
+
+    public boolean onLocation()
+    {
+
+    }
+}
+public class Vampire extends Obstacle{
+
+
+    public Vampire()
+    {
+        super(1,"Vampir",4,14,7);
+    }
+
+}
+
+public class Zombie extends Obstacle {
+
+    public Zombie()
+    {
+        super(3,"Zombi",3,10,4);
+    }
+}
+public abstract class Obstacle {
+
+    private int id;
+    private String name;
+    private int damage;
+    private int health;
+    private int money;
+
+    public Obstacle(int id, String name, int damage, int health, int money) {
+        this.id = id;
+        this.name = name;
+        this.damage = damage;
+        this.health = health;
+        this.money = money;
+    }
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public Obstacle(int id, String name, int damage, int health) {
+        this.id = id;
+        this.name = name;
+        this.damage = damage;
+        this.health = health;
+    }
+
+
+
+}
+public abstract class NormalLoc extends Location {
+
+    Player player;
+    String name;
+
+    public NormalLoc(Player player, String name)
+    {
+        super(player, name);
+    }
+
+    @Override
+    public boolean onLocation()
+    {
+       return true;
+    }
+
+}
+import java.util.Scanner;
+import java.util.logging.SocketHandler;
+
+public class ToolStore extends NormalLoc{
+
+    Scanner scan = new Scanner(System.in);
+
+    public ToolStore(Player player, String name)
+    {
+        super( player, "Mağaza");
+    }
+
+    @Override
+    public boolean onLocation() {
+        System.out.println("Mağazaya Hoşgeldiniz !");
+        showMenu();
+        while(true)
+        {
+            System.out.println("BUTCENİZ        :" +player.getMoney());
+            System.out.println("Ne Almak İstiyorsunuz ?");
+            System.out.println("Silah   :1");
+            System.out.println("Zırh    :2");
+            System.out.println("Cıkıs   :3");
+            int donguSecim = scan.nextInt();
+            if(donguSecim==3)
+                break;
+
+            else{
+            buy(donguSecim);
+        }
+        }
+        return true;
+    }
+
+    public void buy(int secim) {
+        int urunID;
+
+        //SİLAHLAR İÇİN
+        if (secim == 1) {
+            System.out.println("Hangi Ürünü Almak İstiyorsunuz?");
+            urunID = scan.nextInt();
+            if (urunID == 1) {
+                if (player.getMoney() >= 25) {
+                    player.inventory.setWeaponName("Tabanca");
+                    player.inventory.setWeaponDamage(2);
+                    System.out.println("Satın Alma Başarılı");
+
+                    player.setMoney(player.getMoney()-25);
+
+                } else
+                    System.out.println("Yetersiz Bakiye");
+            }
+            if (urunID == 2) {
+                if (player.getMoney() >= 35) {
+                    player.inventory.setWeaponName("Kılıç");
+                    player.inventory.setWeaponDamage(3);
+                    System.out.println("Satın Alma Başarılı");
+
+                    player.setMoney(player.getMoney()-35);
+
+                } else
+                    System.out.println("Yetersiz Bakiye");
+            }
+
+            if (urunID == 3) {
+                if (player.getMoney() >= 45) {
+                    player.inventory.setWeaponName("Tufek");
+                    player.inventory.setWeaponDamage(7);
+                    System.out.println("Satın Alma Başarılı");
+
+                    player.setMoney(player.getMoney()-45);
+
+                } else
+                    System.out.println("Yetersiz Bakiye");
+            }
+        }
+
+            //ZIRHLAR İÇİN
+
+            else if (secim == 2) {
+                System.out.println("Hangi Ürünü Almak İstiyorsunuz?");
+                urunID = scan.nextInt();
+                if (urunID == 1) {
+                    if (player.getMoney() >= 15) {
+                        player.inventory.setArmorDefence(1);
+                        player.setMoney(player.getMoney()-15);
+                        System.out.println("Satın Alma Başarılı");
+                    } else
+                        System.out.println("Yetersiz Bakiye");
+                }
+                if (urunID == 2) {
+                    if (player.getMoney() >= 25) {
+                        player.inventory.setArmorDefence(3);
+                        player.setMoney(player.getMoney()-25);
+                        System.out.println("Satın Alma Başarılı");
+
+
+
+                    } else
+                        System.out.println("Yetersiz Bakiye");
+                }
+                if (urunID == 3) {
+                    if (player.getMoney() >= 45) {
+                        player.inventory.setArmorDefence(5);
+                        player.setMoney(player.getMoney()-45);
+                        System.out.println("Satın Alma Başarılı");
+
+
+                    } else
+                        System.out.println("Yetersiz Bakiye");
+                }
+
+            }
+        }
+    public void showMenu()
+    {
+        System.out.println("BUTCENİZ        :" +player.getMoney());
+        System.out.println("----- SİLAHLAR -----");
+        System.out.println("_Tabanca_");
+        System.out.println();
+        System.out.println("ID      :1");
+        System.out.println("Hasar   :2");
+        System.out.println("Para    :25");
+        System.out.println();
+        System.out.println("--------------------");
+        System.out.println("_Kılıç");
+        System.out.println();
+        System.out.println("ID      :2");
+        System.out.println("Hasar   :3");
+        System.out.println("Para    :35");
+        System.out.println();
+        System.out.println("--------------------");
+        System.out.println("_Tufek_");
+        System.out.println();
+        System.out.println("ID      :3");
+        System.out.println("Hasar   :7");
+        System.out.println("Para    :45");
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+        System.out.println("----- ZIRHLAR -----");
+        System.out.println();
+        System.out.println("ID      :1");
+        System.out.println("Koruma   :2");
+        System.out.println("Para    :15");
+        System.out.println();
+        System.out.println("--------------------");
+        System.out.println();
+        System.out.println("ID      :2");
+        System.out.println("Koruma   :3");
+        System.out.println("Para    :25");
+        System.out.println();
+        System.out.println("--------------------");
+        System.out.println();
+        System.out.println("ID      :3");
+        System.out.println("Koruma   :7");
+        System.out.println("Para    :45");
+
+    }
+    }
+
+public class SafeHouse extends NormalLoc{
+
+    public SafeHouse(Player player, String name)
+    {
+        super(player, "Güvenli Ev");
+    }
+
+    @Override
+    public boolean onLocation()
+    {
+        System.out.println("Güvenli Evdesiniz !");
+        System.out.println("Canınız Yenilendi !");
+        this.player.setHealth(100);
+        return true;
+    }
+}

@@ -1,0 +1,39 @@
+package Deneme;
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+
+
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("DİZİNİN BOYUTUNU");
+        int satir=scan.nextInt();
+
+        int[]dizi= new int[satir];
+        System.out.println("DİZİNİN ELEMANLARİNİ GİRİNİZ");
+        for(int i = 0; i<satir; i++)
+        {
+            dizi[i]=scan.nextInt();
+        }
+
+
+
+        for(int j=1;j<satir;j++)
+        {
+            int key=dizi[j];
+            int i=j-1;
+            while(i>=0 && dizi[i]>key)
+            {
+                dizi[i+1]=dizi[i];
+                i=i-1;
+                dizi[i+1]=key;
+            }
+        }
+
+        System.out.println(Arrays.toString(dizi));
+
+    }
+}

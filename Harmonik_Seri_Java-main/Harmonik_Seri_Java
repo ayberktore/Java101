@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class AlgoritmaveProgramlama {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Bir Sayi Gir");
+        int sayi1 =scan.nextInt();
+        double toplam=0.0;
+        for(double i=1;i<=sayi1;i++)
+        {
+            toplam+=(1/i);
+        }
+        System.out.println(toplam);
+    }
+}

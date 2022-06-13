@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class AlgoritmaveProgramlama {
+    public static void main(String[] args) {
+        Scanner scan=new Scanner(System.in);
+        System.out.println("Sayi Giriniz");
+        int sayi=scan.nextInt();
+
+        for(int kat=1;kat<=sayi;kat++)
+        {
+            for(int bosluk=sayi-kat;bosluk>0;bosluk--)
+            {
+                System.out.print(" ");
+            }
+            for(int yildiz=1;yildiz<=(2*kat)-1;yildiz++)
+            {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        int sayi2=sayi-1;
+        for( int kat=sayi2; kat > 0; kat--)
+        {
+            for( int bosluk = sayi-kat; bosluk > 0; bosluk--)
+            {
+                System.out.print(" ");
+            }
+            for (int yildiz=1; yildiz<=(2*kat)-1;yildiz++)
+            {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}

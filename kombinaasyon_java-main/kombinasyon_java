@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class AlgoritmaveProgramlama {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Sayilari Girin");
+        int a= scan.nextInt();
+        int b= scan.nextInt();
+        int sonuc1=1;
+        for(int i=1;i<=a;i++)
+        {
+            sonuc1=sonuc1*i;
+        }
+        int sonuc2=1;
+        for(int i=1;i<=b;i++)
+        {
+            sonuc2=sonuc2*i;
+        }
+        int sonuc3=1;
+        for(int i=1;i<=(a-b);i++)
+        {
+            sonuc3=sonuc3*i;
+        }
+        int genelSonuc=(sonuc1/(sonuc2*(sonuc3)));
+        System.out.println(genelSonuc);
+
+    }
+}

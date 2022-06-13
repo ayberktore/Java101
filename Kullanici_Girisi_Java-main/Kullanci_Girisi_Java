@@ -1,0 +1,35 @@
+    import java.util.Scanner;
+
+    public class AlgoritmaveProgramlama {
+        public static void main(String[] args) {
+
+            Scanner scan = new Scanner(System.in);
+
+            String userName = "Patika";
+            String password = "Java123";
+            String girilecekN, girilecekP;
+
+            System.out.println("Kullanici Adinizi Giriniz");
+            girilecekN = scan.nextLine();
+            System.out.println("Sifrenizi Giriniz");
+            girilecekP = scan.nextLine();
+
+            if (userName.equals(girilecekN) && password.equals(girilecekP)) {
+                System.out.println("Basariyla Giris Yaptiniz");
+            } else {
+                System.out.println("Sifre Sifirlamak İster Misiniz?");
+                String secim;
+                secim=scan.nextLine();
+                if (secim.equals("Evet")) {
+
+                    System.out.println("Eski Sifreniz ve Hatali Sifreniz ile Ayni Olmamali");
+                    password = scan.nextLine();
+                    if (password.equals(girilecekP) && password.equals("Java123")) {
+                        System.out.println("Sifre Olusturulamadi.Lutfen Baska Sifre Girin");
+                    } else
+                        System.out.println("Basariyla Giris Yaptiniz");
+                }
+
+            }
+        }
+    }

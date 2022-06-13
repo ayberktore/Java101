@@ -1,0 +1,69 @@
+    import java.util.Scanner;
+
+    public class AlgoritmaveProgramlama {
+        public static void main(String[] args) {
+
+            Scanner scan = new Scanner(System.in);
+
+         int mat,gmat,gturkce,turkce,gfizik,fizik,gkimya,kimya,muzik,gmuzik;
+            int sifir=5;
+
+            System.out.println("Matematik Notunuz:");
+            gmat=scan.nextInt();
+            if(gmat<0 || gmat>100)
+            {
+                mat=0;
+                sifir--;
+            }
+            else
+                mat=gmat;
+
+            System.out.println("Fizik Notunuz");
+            gfizik= scan.nextInt();
+            if(gfizik<0 || gfizik>100)
+            {
+                fizik=0;
+                sifir--;
+            }
+            else
+                fizik=gfizik;
+            System.out.println("Turkce Notunuz");
+            gturkce= scan.nextInt();
+            if (gturkce<0 || gturkce>100)
+            {
+                turkce=0;
+                sifir--;
+            }
+            else
+                turkce=gturkce;
+
+            System.out.println("Kimya Notunuz");
+            gkimya=scan.nextInt();
+            if(gkimya<0 || gkimya>100)
+            {
+                kimya=0;
+                sifir--;
+            }
+            else
+                kimya=gkimya;
+            System.out.println("Muzik Notunuz");
+            gmuzik=scan.nextInt();
+            if(gmuzik<0 || gmuzik>100)
+            {
+                muzik=0;
+                sifir--;
+            }
+            else
+                muzik=gmuzik;
+
+            int ort=(mat+turkce+fizik+kimya+muzik)/sifir;
+            if(ort<55)
+            {
+                System.out.println("Basarisiz Oldunuz");
+            }
+            else
+                System.out.println("Basarili Oldunuz");
+            System.out.println("Ortalamaniz:"+ort);
+        }
+
+    }

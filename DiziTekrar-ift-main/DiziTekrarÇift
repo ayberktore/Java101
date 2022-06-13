@@ -1,0 +1,46 @@
+package Deneme;
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+
+    static boolean isFind(int []arr ,int value)
+    {
+        for(int i=0;i<arr.length;i++)
+        {
+            if(value==arr[i])
+                return true;
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("DİZİNİN BOYUTUNU");
+        int satir=scan.nextInt();
+
+        int[]dizi= new int[satir];
+        System.out.println("DİZİNİN ELEMANLARİNİ GİRİNİZ");
+        for(int i = 0; i<satir; i++)
+        {
+            dizi[i]=scan.nextInt();
+        }
+
+        int startIndex=0;
+        int[] yeni= new int [satir];
+        for( int i = 0; i< satir; i++){
+            for( int j = 0; j < satir; j++){
+                if(i != j && dizi[i] == dizi[j] && dizi[i]%2==0){
+                    if(!isFind(yeni,dizi[i]))
+                        yeni[startIndex++]=dizi[i];
+
+                }
+
+            }
+
+        }
+        System.out.println(Arrays.toString(yeni));
+
+    }
+}

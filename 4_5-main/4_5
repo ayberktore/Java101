@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class AlgoritmaveProgramlama {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        int a;
+        System.out.println("Sayi Gir");
+        a = scan.nextInt();
+        int sonuc1 = 1;
+        while (true) {
+            sonuc1 = sonuc1 * 4;
+            if (sonuc1 < a) {
+                System.out.println(sonuc1);
+            } else
+                break;
+        }
+
+        int sonuc2 = 1;
+        while (true) {
+            sonuc2 = sonuc2 * 5;
+            if (sonuc2 < a) {
+                System.out.println(sonuc2);
+            } else
+                break;
+
+        }
+
+    }
+}

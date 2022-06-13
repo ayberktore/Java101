@@ -1,0 +1,57 @@
+package Deneme;
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Dizilerin Boyutlarini Giriniz");
+        int satir=scan.nextInt();
+        int sutun=scan.nextInt();
+
+
+        int[][] dizi1= new int[satir][sutun];
+        System.out.println("1.DİZİNİN ELEMANLARİNİ GİRİNİZ");
+        for(int i = 0; i<satir; i++)
+        {
+            for(int j=0;j<sutun;j++)
+            {
+                System.out.print("["+i+"]"+" "+"["+j+"]"+".elemani giriniz :");
+                dizi1[i][j]=scan.nextInt();
+            }
+            System.out.println();
+        }
+        System.out.println("1.DİZİNİN ELEMANLARİNİ ");
+
+        for(int i=0;i<satir;i++)
+        {
+            for(int j=0;j<sutun;j++)
+            {
+                System.out.print(dizi1[i][j]+" ");
+            }
+            System.out.println();
+        }
+        int[][]Tdizi=new int [sutun][satir];
+
+        for(int i=0;i<sutun;i++)
+        {
+            for(int j=0;j<satir;j++)
+            {
+                Tdizi[i][j]=dizi1[j][i];
+            }
+        }
+        System.out.println("1.DİZİNİN TRANSPOZU ");
+
+        for(int i=0;i<sutun;i++)
+        {
+            for(int j=0;j<satir;j++)
+            {
+                System.out.print(Tdizi[i][j]+" ");
+            }
+            System.out.println();
+        }
+        ;
+    }
+}

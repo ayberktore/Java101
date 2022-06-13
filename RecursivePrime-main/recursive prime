@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class AlgoritmaveProgramlama{
+
+    static int prime(int number,int j) {
+        if(j==1)
+            return 1;
+
+        if(number%j==0)
+            return 0;
+        else
+            return  prime(number,j-1);
+
+    }
+
+        public static void main(String[] args) {
+
+        Scanner scan=new Scanner((System.in));
+            System.out.println("Taban değeri giriniz :");
+            int exp1=scan.nextInt();
+            int prime=prime(exp1,exp1/2);
+            if(prime==0)
+                System.out.println("Asal Degil ");
+            else
+                System.out.println("Asal ");
+        }
+        }

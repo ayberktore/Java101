@@ -1,0 +1,25 @@
+    import java.util.Scanner;
+
+    public class AlgoritmaveProgramlama {
+        public static void main(String[] args){
+
+            Scanner scan = new Scanner(System.in);
+
+           double cap;
+           double pi=3.14;
+           double alan;
+           double cevre;
+            System.out.println("Cemberin Capini Giriniz");
+            cap= scan.nextDouble();
+            alan=pi*cap*cap;
+            cevre=2*pi*cap;
+            System.out.println("Cemberin Alani:"+alan);
+            System.out.println("Cemberin Cevresi:"+cevre);
+            System.out.print("--------");
+            System.out.print("Merkez Acisinin Olcusunu Giriniz");
+            double maci;
+            maci= scan.nextDouble();
+            double ufakAlan=((pi*(cap*cap)*maci)/360);
+            System.out.print("Daire Diliminin Alani:"+ufakAlan);
+        }
+    }

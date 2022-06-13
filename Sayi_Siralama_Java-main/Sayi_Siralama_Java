@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class AlgoritmaveProgramlama {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+
+        int max;
+        int min;
+        System.out.println("Kac Sayi Gireceksiniz");
+        int kac= scan.nextInt();
+        System.out.println();
+        System.out.println("sayi gir");
+        int sayi=scan.nextInt();
+        max=sayi;
+        min=sayi;
+        for(int i=1;i<kac;i++)
+        {
+            System.out.println("sayi gir");
+            sayi=scan.nextInt();
+            if (sayi>max)
+                max=sayi;
+            if(sayi<min)
+                min=sayi;
+        }
+
+        System.out.println("min:"+min+"max:"+max);
+
+    }
+}

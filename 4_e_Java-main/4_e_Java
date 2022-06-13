@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class AlgoritmaveProgramlama {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        int sayi;
+        System.out.println("Sayi Gir");
+        sayi = scan.nextInt();
+        int toplam = 0;
+        while (sayi % 2 == 0) {
+            if (sayi % 4 == 0) {
+                System.out.println("Katidir");
+                toplam = toplam + sayi;
+            }
+            System.out.println("Sayi Gir");
+            sayi = scan.nextInt();
+        }
+        System.out.println(toplam);
+    }
+}

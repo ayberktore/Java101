@@ -1,0 +1,22 @@
+ import java.util.Scanner;
+
+public class AlgoritmaveProgramlama{
+
+    static int hesap(int exp, int power) {
+        if(power==0)
+            return 1;
+        else
+            return exp*hesap(exp,power-1);
+
+    }
+
+        public static void main(String[] args) {
+
+        Scanner scan=new Scanner((System.in));
+            System.out.println("Taban değeri giriniz :");
+            int exp1=scan.nextInt();
+            System.out.println("Us degerini giriniz: ");
+            int power1=scan.nextInt();
+            System.out.println(hesap(exp1,power1));
+        }
+        }

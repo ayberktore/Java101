@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class AlgoritmaveProgramlama{
+
+
+
+    static int sum(int temp, int number,int x) {
+
+        System.out.println(number);
+
+        if (temp == 0)
+        {
+            if (number == x)
+                return 0;
+            else
+                return sum(temp, number + 5,x);
+    }
+            else
+                return sum(temp-5, number - 5,x);
+
+    }
+
+        public static void main(String[] args) {
+
+        Scanner scan=new Scanner((System.in));
+            System.out.println("Taban değeri giriniz :");
+            int exp1=scan.nextInt();
+            sum(exp1,exp1,exp1);
+
+
+        }}

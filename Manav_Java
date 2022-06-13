@@ -1,0 +1,33 @@
+    import java.util.Scanner;
+
+    public class AlgoritmaveProgramlama {
+        public static void main(String[] args){
+
+            Scanner scan = new Scanner(System.in);
+
+            double armutFiyat = 2.14;
+            double elmaFiyat = 3.67;
+            double domatesFiyat = 1.11;
+            double muzFiyat = 0.95;
+            double patlicanFiyat = 5.00;
+
+            int armutSayisi;
+            System.out.print("Armut kaç kilo ?");
+            armutSayisi=scan.nextInt();
+            System.out.println();
+            int elmaSayisi;
+            System.out.println("Elma kaç kilo ?");
+            elmaSayisi= scan.nextInt();
+            int domatesSayisi;
+            System.out.println("Domates kaç kilo ?");
+            domatesSayisi=scan.nextInt();
+            int muzSayisi;
+            System.out.println("Muz kaç kilo ?");
+            muzSayisi=scan.nextInt();
+            int patlicanSayisi;
+            System.out.println("Patlican kaç kilo ?");
+            patlicanSayisi=scan.nextInt();
+            double toplamTutar=((armutSayisi*armutFiyat)+(elmaFiyat*elmaSayisi)+(domatesFiyat*domatesSayisi)+(muzFiyat*muzSayisi)+(patlicanSayisi*patlicanFiyat));
+            System.out.println("Toplam Tutar:"+toplamTutar+"TL");
+        }
+    }
